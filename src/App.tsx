@@ -1,7 +1,12 @@
 import './App.css'
+import PageHeader from './Common/PageHeader'
 
 function App() {
-    return <div className="App"></div>
+    return (
+        <>
+            <PageHeader />
+        </>
+    )
 }
 
 export default App
