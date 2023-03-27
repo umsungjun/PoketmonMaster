@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import PoketMarkChip from '../Common/PoketMarkChip'
 import { fetchPoketmonDetail, PoketmonDetailType } from '../Service/PoketmonService'
 
+import { FaQuestion } from 'react-icons/fa'
+
 export default function PoketmonDetail() {
     const { name } = useParams()
     const [poketmon, setPoketmons] = useState<PoketmonDetailType | null>(null)
@@ -17,7 +19,18 @@ export default function PoketmonDetail() {
     }, [name])
 
     if (!name || !poketmon) {
-        return null
+        return (
+            <Container>
+                <ImageContainer>
+                    <FaQuestion />
+                </ImageContainer>
+                <Divider />
+                <NoinfoBody>등록된 정보가 없습니다.</NoinfoBody>
+                <Footer>
+                    <PoketMarkChip />
+                </Footer>
+            </Container>
+        )
     }
 
     return (
@@ -87,6 +100,11 @@ const ImageContainer = styled.section`
     justify-content: center;
     align-items: center;
     margin: 0.5rem 0;
+    min-height: 25rem;
+
+    svg {
+        font-size: 3rem;
+    }
 `
 
 const Image = styled.img`
@@ -102,6 +120,14 @@ const Divider = styled.hr`
 
 const Body = styled.section`
     margin: 0 2rem;
+`
+
+const NoinfoBody = styled.section`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 15rem;
+    font-size: 2rem;
 `
 
 const H2Title = styled.h2`

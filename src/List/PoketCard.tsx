@@ -6,6 +6,8 @@ import PoketMarkChip from '../Common/PoketMarkChip'
 import PoketNameChip from '../Common/PoketNameChip'
 import { fetchPoketmonDetail, PoketmonDetailType } from '../Service/PoketmonService'
 
+import { FaQuestion } from 'react-icons/fa'
+
 interface PoketCardProps {
     name: string
 }
@@ -26,7 +28,19 @@ export default function PoketCard(props: PoketCardProps) {
     }, [props.name])
 
     if (!poketmon) {
-        return null // TODO 화면이 로딩 중
+        return (
+            <Item color={'#c0c0c0'}>
+                <Header>
+                    <PoketNameChip name={'???'} color={'#fff'} id={0} />
+                </Header>
+                <Body>
+                    <FaQuestion />
+                </Body>
+                <Footer>
+                    <PoketMarkChip />
+                </Footer>
+            </Item>
+        )
     }
 
     return (
@@ -80,6 +94,10 @@ const Body = styled.section`
     align-items: center;
     margin: 0.5rem 0;
     flex: 1 1 0;
+
+    svg {
+        font-size: 3rem;
+    }
 `
 const Image = styled.img`
     width: 180px;
