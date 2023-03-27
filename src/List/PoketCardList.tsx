@@ -1,11 +1,26 @@
 import styled from '@emotion/styled'
+import { useEffect, useState } from 'react'
+import { fetchPoketmons, PoketmonListResponseType } from '../Service/PoketmonService'
 import PoketCard from './PoketCard'
 
 export default function PoketCardList() {
+    const [poketmons, setPoketmons] = useState<PoketmonListResponseType>({
+        count: 0,
+        next: '',
+        results: [],
+    })
+
+    useEffect(() => {
+        ;(async () => {
+            const poketmons = await fetchPoketmons()
+            setPoketmons(poketmons)
+        })()
+    }, [])
+
     return (
         <List>
-            {Array.from({ length: 10 }).map((_, index) => {
-                return <PoketCard key={index} />
+            {poketmons.results.map((poketmon, index) => {
+                return <PoketCard key={poketmon.name} name={poketmon.name} />
             })}
         </List>
     )

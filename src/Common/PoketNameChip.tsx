@@ -1,12 +1,27 @@
 import styled from '@emotion/styled'
 
-export default function PoketNameChip() {
+interface PoketNameChipProps {
+    name: string
+    id: number
+}
+
+export default function PoketNameChip(props: PoketNameChipProps) {
+    const renderNumber = (id: number) => {
+        if (id < 10) {
+            return `00${id}`
+        } else if (id < 100) {
+            return `0${id}`
+        } else {
+            return id
+        }
+    }
+
     return (
         <Chip>
             <NumberChip>
-                <Number>001</Number>
+                <Number>{renderNumber(props.id)}</Number>
             </NumberChip>
-            <Text>이상해씨</Text>
+            <Text>{props.name}</Text>
         </Chip>
     )
 }
