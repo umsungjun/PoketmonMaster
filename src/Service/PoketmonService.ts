@@ -53,6 +53,8 @@ export interface PoketmonDetailType {
     weight: number
     height: number
     name: string
+    koreanName: string
+    color: string
     types: string[]
     images: {
         frontDefault: string
@@ -65,14 +67,32 @@ export interface PoketmonDetailType {
     }[]
 }
 
+interface PoketmonSpeciesResponseType {
+    color: {
+        name: string
+    }
+    names: {
+        name: string
+        language: {
+            name: string
+        }
+    }[]
+}
+
 export const fetchPoketmonDetail = async (name: string): Promise<PoketmonDetailType> => {
     const poketmonDetailURL = `https://pokeapi.co/api/v2/pokemon/${name}`
-    const response = await remote.get<PoketmonDetailResponseType>(poketmonDetailURL)
-    const detail = response.data
+    const poketmonSpeciesURL = ` https://pokeapi.co/api/v2/pokemon-species/${name}`
 
+    const response = await remote.get<PoketmonDetailResponseType>(poketmonDetailURL)
+    const speciesReponse = await remote.get<PoketmonSpeciesResponseType>(poketmonSpeciesURL)
+
+    const detail = response.data
+    const species = speciesReponse.data
     return {
         id: detail.id,
         name: detail.name,
+        koreanName: species.names.find((item) => item.language.name === 'ko')?.name ?? detail.name,
+        color: species.color.name,
         height: detail.height / 10,
         weight: detail.weight / 10,
         types: detail.types.map((item) => item.type.name),

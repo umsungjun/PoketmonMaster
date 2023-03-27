@@ -1,12 +1,29 @@
 import styled from '@emotion/styled'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import PoketMarkChip from '../Common/PoketMarkChip'
-import { TempImgUrl } from '../List/PoketCard'
+import { fetchPoketmonDetail, PoketmonDetailType } from '../Service/PoketmonService'
 
 export default function PoketmonDetail() {
+    const { name } = useParams()
+    const [poketmon, setPoketmons] = useState<PoketmonDetailType | null>(null)
+
+    useEffect(() => {
+        if (!name) return
+        ;(async () => {
+            const detail = await fetchPoketmonDetail(name)
+            setPoketmons(detail)
+        })()
+    }, [name])
+
+    if (!name || !poketmon) {
+        return null
+    }
+
     return (
         <Container>
             <ImageContainer>
-                <Image src={TempImgUrl} />
+                <Image src={poketmon.images.dreamWorldFront} alt={poketmon.koreanName} />
             </ImageContainer>
             <Divider />
             <Body>
@@ -15,11 +32,23 @@ export default function PoketmonDetail() {
                     <tbody>
                         <TableRow>
                             <TableHeader>번호</TableHeader>
-                            <td>1</td>
+                            <td>{poketmon.id}</td>
                         </TableRow>
                         <TableRow>
                             <TableHeader>이름</TableHeader>
-                            <td>피카츄</td>
+                            <td>{`${poketmon.koreanName}(${poketmon.name})`}</td>
+                        </TableRow>
+                        <TableRow>
+                            <TableHeader>타입</TableHeader>
+                            <td>{poketmon.types.toString()}</td>
+                        </TableRow>
+                        <TableRow>
+                            <TableHeader>키</TableHeader>
+                            <td>{`${poketmon.height}m`}</td>
+                        </TableRow>
+                        <TableRow>
+                            <TableHeader>몸무게</TableHeader>
+                            <td>{`${poketmon.weight}kg`}</td>
                         </TableRow>
                     </tbody>
                 </Table>
@@ -27,14 +56,14 @@ export default function PoketmonDetail() {
                 <H2Title>능력치</H2Title>
                 <Table>
                     <tbody>
-                        <TableRow>
-                            <TableHeader>hp</TableHeader>
-                            <td>45</td>
-                        </TableRow>
-                        <TableRow>
-                            <TableHeader>attack</TableHeader>
-                            <td>49</td>
-                        </TableRow>
+                        {poketmon.baseStats.map((stat) => {
+                            return (
+                                <TableRow key={stat.name}>
+                                    <TableHeader>{stat.name}</TableHeader>
+                                    <td>{stat.value}</td>
+                                </TableRow>
+                            )
+                        })}
                     </tbody>
                 </Table>
             </Body>
