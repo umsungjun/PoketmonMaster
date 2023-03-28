@@ -1,16 +1,32 @@
 import styled from '@emotion/styled'
+import { ChangeEvent } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { POKETMON_IMAGE_TYPE } from '../Constants'
+import { RootState, useAppDispatch } from '../Store'
+import { changeImageType, PoketMonImageKeyType } from '../Store/imageTypeSlice'
 
 export default function PageHeader() {
+    const type = useSelector((state: RootState) => state.imageType.type)
+    const dispatch = useAppDispatch()
+
+    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch(
+            changeImageType({
+                type: e.target.value as PoketMonImageKeyType,
+            })
+        )
+    }
+
     return (
         <Header>
             <Title>
                 <Link to="/">Pokémon</Link>
             </Title>
-            <Select>
-                <option value="Official">Official</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
+            <Select value={type} onChange={handleChange}>
+                <option value={POKETMON_IMAGE_TYPE.OFFICIAL_ARTWORK}>Official</option>
+                <option value={POKETMON_IMAGE_TYPE.DREAM_WORLD}>DreamWorld</option>
+                <option value={POKETMON_IMAGE_TYPE.FRONT_DEFAULT}>FrontDefault</option>
             </Select>
         </Header>
     )

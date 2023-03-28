@@ -5,8 +5,11 @@ import PoketMarkChip from '../Common/PoketMarkChip'
 import { fetchPoketmonDetail, PoketmonDetailType } from '../Service/PoketmonService'
 
 import { FaQuestion } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+import { RootState } from '../Store'
 
 export default function PoketmonDetail() {
+    const imageType = useSelector((state: RootState) => state.imageType.type)
     const { name } = useParams()
     const [poketmon, setPoketmons] = useState<PoketmonDetailType | null>(null)
 
@@ -36,7 +39,7 @@ export default function PoketmonDetail() {
     return (
         <Container>
             <ImageContainer>
-                <Image src={poketmon.images.dreamWorldFront} alt={poketmon.koreanName} />
+                <Image src={poketmon.images[imageType]} alt={poketmon.koreanName} />
             </ImageContainer>
             <Divider />
             <Body>

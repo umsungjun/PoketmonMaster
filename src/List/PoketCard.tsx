@@ -7,6 +7,9 @@ import PoketNameChip from '../Common/PoketNameChip'
 import { fetchPoketmonDetail, PoketmonDetailType } from '../Service/PoketmonService'
 
 import { FaQuestion } from 'react-icons/fa'
+import { useIntersectionObserver } from 'react-intersection-observer-hook'
+import { useSelector } from 'react-redux'
+import { RootState } from '../Store'
 
 interface PoketCardProps {
     name: string
@@ -14,6 +17,10 @@ interface PoketCardProps {
 
 export default function PoketCard(props: PoketCardProps) {
     const navigate = useNavigate()
+    const imageType = useSelector((state: RootState) => state.imageType.type)
+    const [ref, { entry }] = useIntersectionObserver()
+    const isVisible = entry && entry.isIntersecting
+
     const [poketmon, setPoketmons] = useState<PoketmonDetailType | null>(null)
 
     const handleCLick = () => {
@@ -21,15 +28,19 @@ export default function PoketCard(props: PoketCardProps) {
     }
 
     useEffect(() => {
+        if (!isVisible) {
+            return
+        }
+
         ;(async () => {
             const detail = await fetchPoketmonDetail(props.name)
             setPoketmons(detail)
         })()
-    }, [props.name])
+    }, [props.name, isVisible])
 
     if (!poketmon) {
         return (
-            <Item color={'#c0c0c0'}>
+            <Item color={'#c0c0c0'} ref={ref}>
                 <Header>
                     <PoketNameChip name={'???'} color={'#fff'} id={0} />
                 </Header>
@@ -44,12 +55,12 @@ export default function PoketCard(props: PoketCardProps) {
     }
 
     return (
-        <Item onClick={handleCLick} color={poketmon.color}>
+        <Item onClick={handleCLick} color={poketmon.color} ref={ref}>
             <Header>
                 <PoketNameChip name={poketmon.koreanName} color={poketmon.color} id={poketmon.id} />
             </Header>
             <Body>
-                <Image src={poketmon.images.dreamWorldFront} alt={poketmon.name} />
+                <Image src={poketmon.images[imageType]} alt={poketmon.name} />
             </Body>
             <Footer>
                 <PoketMarkChip />
