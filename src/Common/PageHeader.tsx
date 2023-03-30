@@ -1,14 +1,20 @@
 import styled from '@emotion/styled'
 import { ChangeEvent } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { POKETMON_IMAGE_TYPE } from '../Constants'
 import { RootState, useAppDispatch } from '../Store'
 import { changeImageType, PoketMonImageKeyType } from '../Store/imageTypeSlice'
+import { changeThemeType } from '../Store/themeTypeSlice'
+
+import { BsSunFill } from 'react-icons/Bs'
+import { IoMdMoon } from 'react-icons/Io'
 
 export default function PageHeader() {
-    const type = useSelector((state: RootState) => state.imageType.type)
+    const imageType = useSelector((state: RootState) => state.imageType.type)
     const dispatch = useAppDispatch()
+    const themeDispatch = useDispatch()
+    const theme = useSelector((state: RootState) => state.themeType.theme)
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(
@@ -17,13 +23,20 @@ export default function PageHeader() {
             })
         )
     }
-
+    // console.log(typeof theme)
     return (
-        <Header>
+        <Header theme={theme}>
             <Title>
                 <Link to="/">Pokémon</Link>
             </Title>
-            <Select value={type} onChange={handleChange}>
+            <ThemeButton
+                theme={theme}
+                value={theme}
+                onClick={() => themeDispatch(changeThemeType())}
+            >
+                {theme === 'light' ? <IoMdMoon /> : <BsSunFill />}
+            </ThemeButton>
+            <Select value={imageType} onChange={handleChange}>
                 <option value={POKETMON_IMAGE_TYPE.OFFICIAL_ARTWORK}>Official</option>
                 <option value={POKETMON_IMAGE_TYPE.DREAM_WORLD}>DreamWorld</option>
                 <option value={POKETMON_IMAGE_TYPE.FRONT_DEFAULT}>FrontDefault</option>
@@ -35,8 +48,12 @@ export default function PageHeader() {
 const Header = styled.nav`
     display: flex;
     padding: 1rem 2rem;
-    margin-bottom: 1rem;
     border-bottom: 1px solid #c0c0c0;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+
+    ${(props) => (props.theme === 'dark' ? 'background-color: #191d24;' : '')}
 `
 
 const Title = styled.h1`
@@ -51,4 +68,17 @@ const Select = styled.select`
     margin-left: auto;
     padding: 8px 12px;
     border-radius: 8px;
+`
+
+const ThemeButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    border: none;
+    cursor: pointer;
+    background: none;
+    font-size: 1.5rem;
+
+    ${(props) => (props.theme === 'light' ? 'color: black;' : 'color: white;')}
 `
