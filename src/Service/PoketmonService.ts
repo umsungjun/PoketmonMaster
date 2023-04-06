@@ -11,10 +11,10 @@ export interface PoketmonListResponseType {
     }[]
 }
 
-export const fetchPoketmons = async () => {
-    const defaultURL = 'https://pokeapi.co/api/v2/pokemon'
+export const fetchPoketmonsAPI = async (nextUrl?: string) => {
+    const requestUrl = nextUrl ? nextUrl : 'https://pokeapi.co/api/v2/pokemon'
 
-    const response = await remote.get<PoketmonListResponseType>(defaultURL)
+    const response = await remote.get<PoketmonListResponseType>(requestUrl)
 
     return response.data
 }
@@ -79,7 +79,7 @@ interface PoketmonSpeciesResponseType {
     }[]
 }
 
-export const fetchPoketmonDetail = async (name: string): Promise<PoketmonDetailType> => {
+export const fetchPoketmonDetailApi = async (name: string): Promise<PoketmonDetailType> => {
     const poketmonDetailURL = `https://pokeapi.co/api/v2/pokemon/${name}`
     const poketmonSpeciesURL = ` https://pokeapi.co/api/v2/pokemon-species/${name}`
 

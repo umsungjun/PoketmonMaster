@@ -1,24 +1,25 @@
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import PoketMarkChip from '../Common/PoketMarkChip'
-import { fetchPoketmonDetail, PoketmonDetailType } from '../Service/PoketmonService'
+import { fetchPoketmonDetailApi } from '../Service/PoketmonService'
 
 import { FaQuestion } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
-import { RootState } from '../Store'
+import { RootState, useAppDispatch } from '../Store'
+import { fetchPoketmonDetail } from '../Store/poketmonDetailSlice'
 
 export default function PoketmonDetail() {
     const imageType = useSelector((state: RootState) => state.imageType.type)
     const { name } = useParams()
-    const [poketmon, setPoketmons] = useState<PoketmonDetailType | null>(null)
+    const dispatch = useAppDispatch()
+    const { poketmonDetails } = useSelector((state: RootState) => state.poketmonDetail)
+    const poketmon = name ? poketmonDetails[name] : null
 
     useEffect(() => {
         if (!name) return
-        ;(async () => {
-            const detail = await fetchPoketmonDetail(name)
-            setPoketmons(detail)
-        })()
+
+        dispatch(fetchPoketmonDetail(name))
     }, [name])
 
     if (!name || !poketmon) {

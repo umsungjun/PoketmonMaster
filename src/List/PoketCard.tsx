@@ -1,15 +1,15 @@
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import PoketMarkChip from '../Common/PoketMarkChip'
 import PoketNameChip from '../Common/PoketNameChip'
-import { fetchPoketmonDetail, PoketmonDetailType } from '../Service/PoketmonService'
+import { fetchPoketmonDetail } from '../Store/poketmonDetailSlice'
 
 import { FaQuestion } from 'react-icons/fa'
 import { useIntersectionObserver } from 'react-intersection-observer-hook'
 import { useSelector } from 'react-redux'
-import { RootState } from '../Store'
+import { RootState, useAppDispatch } from '../Store'
 
 interface PoketCardProps {
     name: string
@@ -17,12 +17,12 @@ interface PoketCardProps {
 
 export default function PoketCard(props: PoketCardProps) {
     const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     const imageType = useSelector((state: RootState) => state.imageType.type)
     const [ref, { entry }] = useIntersectionObserver()
     const isVisible = entry && entry.isIntersecting
-
-    const [poketmon, setPoketmons] = useState<PoketmonDetailType | null>(null)
-
+    const { poketmonDetails } = useSelector((state: RootState) => state.poketmonDetail)
+    const poketmon = poketmonDetails[props.name]
     const handleCLick = () => {
         navigate(`/poketmon/${props.name}`)
     }
@@ -32,11 +32,8 @@ export default function PoketCard(props: PoketCardProps) {
             return
         }
 
-        ;(async () => {
-            const detail = await fetchPoketmonDetail(props.name)
-            setPoketmons(detail)
-        })()
-    }, [props.name, isVisible])
+        dispatch(fetchPoketmonDetail(props.name))
+    }, [dispatch, props.name, isVisible])
 
     if (!poketmon) {
         return (
