@@ -1,6 +1,5 @@
-import { BsSunFill } from 'react-icons/Bs'
-import { IoMdMoon } from 'react-icons/Io'
-
+import { BsSunFill } from 'react-icons/bs'
+import { IoMdMoon } from 'react-icons/io'
 import styled from '@emotion/styled'
 import { ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
