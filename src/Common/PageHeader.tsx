@@ -1,3 +1,6 @@
+import { BsSunFill } from 'react-icons/Bs'
+import { IoMdMoon } from 'react-icons/Io'
+
 import styled from '@emotion/styled'
 import { ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,9 +9,6 @@ import { POKETMON_IMAGE_TYPE } from '../Constants'
 import { RootState, useAppDispatch } from '../Store'
 import { changeImageType, PoketMonImageKeyType } from '../Store/imageTypeSlice'
 import { changeThemeType } from '../Store/themeTypeSlice'
-
-import { BsSunFill } from 'react-icons/Bs'
-import { IoMdMoon } from 'react-icons/Io'
 
 export default function PageHeader() {
     const imageType = useSelector((state: RootState) => state.imageType.type)
