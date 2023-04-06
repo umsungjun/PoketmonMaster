@@ -2,7 +2,6 @@ import styled from '@emotion/styled'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import PoketMarkChip from '../Common/PoketMarkChip'
-import { fetchPoketmonDetailApi } from '../Service/PoketmonService'
 
 import { FaQuestion } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
