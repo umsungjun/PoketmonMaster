@@ -31,7 +31,7 @@ export default function PoketCardList() {
         <>
             <List theme={theme}>
                 {poketmons.results.map((poketmon, index) => {
-                    return <PoketCard key={poketmon.name} name={poketmon.name} />
+                    return <PoketCard key={`${poketmon.name}+${index}`} name={poketmon.name} />
                 })}
             </List>
             <Loading ref={infiniteRef}>Loading</Loading>
