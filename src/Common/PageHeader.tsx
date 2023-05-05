@@ -8,6 +8,7 @@ import { POKETMON_IMAGE_TYPE } from '../Constants'
 import { RootState, useAppDispatch } from '../Store'
 import { changeImageType, PoketMonImageKeyType } from '../Store/imageTypeSlice'
 import { changeThemeType } from '../Store/themeTypeSlice'
+import { darkTheme, lightTheme } from 'src/Theme/theme'
 
 export default function PageHeader() {
     const imageType = useSelector((state: RootState) => state.imageType.type)
@@ -52,7 +53,7 @@ const Header = styled.nav`
     width: 100%;
     z-index: 10;
 
-    ${(props) => (props.theme === 'dark' ? 'background-color: #191d24;' : '')}
+    ${(props) => (props.theme === 'dark' ? darkTheme.background : lightTheme.background)}
 `
 
 const Title = styled.h1`
