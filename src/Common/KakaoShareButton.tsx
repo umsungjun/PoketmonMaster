@@ -2,17 +2,21 @@ import styled from '@emotion/styled'
 import React from 'react'
 import { FiShare } from 'react-icons/fi'
 
+interface KakaoShareButtonProps {
+    poketmonName: string
+}
+
 const Kakao = (window as any).Kakao
 
-export default function KakaoShareButton() {
-    const currentURL = window.location.href
+export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps) {
+    const currentURL = `https://poketmon-master-kvmw0gdlc-umsungjun.vercel.app/poketmon/${poketmonName}`
 
     const shareKakao = () => {
         Kakao.Share.sendDefault({
             objectType: 'feed',
             content: {
                 title: '포켓몬 마스터',
-                description: '',
+                description: 'test',
                 imageUrl:
                     'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
                 link: {
