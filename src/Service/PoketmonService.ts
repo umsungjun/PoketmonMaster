@@ -11,9 +11,7 @@ export interface PoketmonListResponseType {
     }[]
 }
 
-{
-    "rewrites": [{ "source": "/api/(.*)", "destination": "/api/404.js" }]
-  }
+
 
 export const fetchPoketmonsAPI = async (nextUrl?: string) => {
     const requestUrl = nextUrl ? nextUrl : 'https://pokeapi.co/api/v2/pokemon'
