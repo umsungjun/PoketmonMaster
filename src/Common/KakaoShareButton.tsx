@@ -15,7 +15,7 @@ export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps
         Kakao.Share.sendDefault({
             objectType: 'feed',
             content: {
-                title: '포켓몬 마스터',
+                title: '포켓몬 마스터 테스트',
                 description: 'test',
                 imageUrl:
                     'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
