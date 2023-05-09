@@ -33,8 +33,8 @@ export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps
                 {
                     title: '포켓몬 구경하러가기',
                     link: {
-                        mobileWebUrl: 'https://developers.kakao.com',
-                        webUrl: 'https://developers.kakao.com',
+                        mobileWebUrl: `https://www.naver.com/`,
+                        webUrl: `https://www.naver.com/`,
                     },
                 },
             ],
