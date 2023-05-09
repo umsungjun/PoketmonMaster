@@ -52,6 +52,7 @@ const Header = styled.nav`
     position: fixed;
     width: 100%;
     z-index: 10;
+    top: 0;
 
     ${(props) => (props.theme === 'dark' ? darkTheme.background : lightTheme.background)}
 `

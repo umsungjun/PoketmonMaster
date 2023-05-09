@@ -5,8 +5,10 @@ import PoketMarkChip from '../Common/PoketMarkChip'
 
 import { FaQuestion } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
+
 import { RootState, useAppDispatch } from '../Store'
 import { fetchPoketmonDetail } from '../Store/poketmonDetailSlice'
+import KakaoShareButton from 'src/Common/KakaoShareButton'
 
 export default function PoketmonDetail() {
     const imageType = useSelector((state: RootState) => state.imageType.type)
@@ -38,6 +40,7 @@ export default function PoketmonDetail() {
 
     return (
         <Container>
+            <KakaoShareButton />
             <ImageContainer>
                 <Image src={poketmon.images[imageType]} alt={poketmon.koreanName} />
             </ImageContainer>
@@ -92,9 +95,10 @@ export default function PoketmonDetail() {
 
 const Container = styled.section`
     border: 1px solid #c0c0c0;
-    margin: 1rem 2rem;
+    margin: 0 1rem 2rem;
     border-radius: 1rem;
-    box-shadow: 1px 1px 1px 1px #c0c0c0;
+    box-shadow: 0px 1px 5px 1px #c0c0c0;
+    margin-top: 6rem;
 `
 
 const ImageContainer = styled.section`

@@ -17,9 +17,7 @@ export default function PoketCardList() {
         onLoadMore: async () => {
             dispatch(fetchPoketmons(poketmons.next))
         },
-
         disabled: false,
-
         rootMargin: '0px 0px 400px 0px',
     })
 
