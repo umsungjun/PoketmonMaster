@@ -15,8 +15,8 @@ export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps
         Kakao.Share.sendDefault({
             objectType: 'feed',
             content: {
-                title: '포켓몬 마스터',
-                description: '추억의 포켓몬들을 구경하세요.',
+                title: '😺 예비집사 판별기 결과😸',
+                description: `테스트`,
                 imageUrl:
                     'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
                 link: {
@@ -24,6 +24,7 @@ export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps
                     webUrl: currentURL,
                 },
             },
+
             social: {
                 likeCount: 10,
                 commentCount: 20,
@@ -31,7 +32,7 @@ export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps
             },
             buttons: [
                 {
-                    title: '포켓몬 구경하러가기',
+                    title: '나도 테스트하러가기',
                     link: {
                         mobileWebUrl: currentURL,
                         webUrl: currentURL,
