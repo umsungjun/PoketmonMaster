@@ -9,13 +9,17 @@ import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from '../Store'
 import { fetchPoketmonDetail } from '../Store/poketmonDetailSlice'
 import KakaoShareButton from 'src/Common/KakaoShareButton'
+import { darkTheme, lightTheme } from 'src/Theme/theme'
 
 export default function PoketmonDetail() {
+    const theme = useSelector((state: RootState) => state.themeType.theme)
     const imageType = useSelector((state: RootState) => state.imageType.type)
     const { name } = useParams()
     const dispatch = useAppDispatch()
     const { poketmonDetails } = useSelector((state: RootState) => state.poketmonDetail)
     const poketmon = name ? poketmonDetails[name] : null
+
+    document.querySelector('html')!.style.background = theme === 'dark' ? '#191d24' : '#fff'
 
     useEffect(() => {
         if (!name) return
@@ -39,7 +43,7 @@ export default function PoketmonDetail() {
     }
 
     return (
-        <Container>
+        <Container theme={theme}>
             <KakaoShareButton />
             <ImageContainer>
                 <Image src={poketmon.images[imageType]} alt={poketmon.koreanName} />
@@ -72,7 +76,7 @@ export default function PoketmonDetail() {
                     </tbody>
                 </Table>
 
-                <H2Title>능력치</H2Title>
+                <StatTitle>능력치</StatTitle>
                 <Table>
                     <tbody>
                         {poketmon.baseStats.map((stat) => {
@@ -97,8 +101,9 @@ const Container = styled.section`
     border: 1px solid #c0c0c0;
     margin: 0 1rem 2rem;
     border-radius: 1rem;
-    box-shadow: 0px 1px 5px 1px #c0c0c0;
+    ${(props) => (props.theme === 'dark' ? darkTheme.boxShadow : lightTheme.boxShadow)}
     margin-top: 6rem;
+    ${(props) => (props.theme === 'light' ? 'color: black;' : 'color: white;')}
 `
 
 const ImageContainer = styled.section`
@@ -140,6 +145,12 @@ const NoinfoBody = styled.section`
 const H2Title = styled.h2`
     font-size: 1.3rem;
     font-weight: 700;
+`
+
+const StatTitle = styled.h2`
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 3rem;
 `
 
 const Table = styled.table`

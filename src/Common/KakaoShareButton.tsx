@@ -54,6 +54,19 @@ const ShareBox = styled.div`
 `
 
 const ShareButton = styled.button`
-    margin: 1rem 1rem 0 0;
+    margin: 2rem 2rem 0 0;
     cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    transition: all ease-in-out 0.2s;
+    &:hover {
+        color: #ff0;
+    }
+
+    svg {
+        margin-left: 0.3rem;
+    }
 `

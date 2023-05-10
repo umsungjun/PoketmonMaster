@@ -1,8 +1,11 @@
 import styled from '@emotion/styled'
+import { useSelector } from 'react-redux'
+import { RootState } from 'src/Store'
 
 export default function PoketMarkChip() {
+    const theme = useSelector((state: RootState) => state.themeType.theme)
     return (
-        <Chip>
+        <Chip theme={theme}>
             <Text>Pokémon</Text>
         </Chip>
     )
@@ -23,6 +26,7 @@ const Chip = styled.div`
     margin-right: 0.2rem;
 
     background: #fff;
+    color: black;
 `
 
 const Text = styled.label`

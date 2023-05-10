@@ -48,7 +48,7 @@ export default function PageHeader() {
 const Header = styled.nav`
     display: flex;
     padding: 1rem 2rem;
-    ${(props) => (props.theme === 'dark' ? darkTheme.border : lightTheme.border)}
+    ${(props) => (props.theme === 'dark' ? darkTheme.headerBorder : lightTheme.border)}
     position: fixed;
     width: 100%;
     z-index: 10;
