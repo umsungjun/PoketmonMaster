@@ -40,7 +40,7 @@ export default function PoketmonDetail() {
 
     return (
         <Container>
-            <KakaoShareButton poketmonName={poketmon?.name} />
+            <KakaoShareButton />
             <ImageContainer>
                 <Image src={poketmon.images[imageType]} alt={poketmon.koreanName} />
             </ImageContainer>
