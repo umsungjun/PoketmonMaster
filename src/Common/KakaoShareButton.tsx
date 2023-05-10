@@ -9,7 +9,7 @@ interface KakaoShareButtonProps {
 const Kakao = (window as any).Kakao
 
 export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps) {
-    const currentURL = `https://poketmon-master-kvmw0gdlc-umsungjun.vercel.app/poketmon/${poketmonName}`
+    const currentURL = `https://www.naver.com`
 
     const shareKakao = () => {
         Kakao.Share.sendDefault({
@@ -20,8 +20,8 @@ export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps
                 imageUrl:
                     'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
                 link: {
-                    mobileWebUrl: `https://www.naver.com/`,
-                    webUrl: `https://www.naver.com/`,
+                    mobileWebUrl: currentURL,
+                    webUrl: currentURL,
                 },
             },
             social: {
@@ -33,8 +33,8 @@ export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps
                 {
                     title: '포켓몬 구경하러가기',
                     link: {
-                        mobileWebUrl: `https://www.naver.com/`,
-                        webUrl: `https://www.naver.com/`,
+                        mobileWebUrl: currentURL,
+                        webUrl: currentURL,
                     },
                 },
             ],
