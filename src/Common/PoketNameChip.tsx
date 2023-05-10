@@ -37,6 +37,7 @@ const Chip = styled.div`
     font-size: 1rem;
     font-weight: bold;
     box-shadow: 0.5px 0.5px 0 0 #c0c0c0;
+    background: #fff;
 `
 
 const NumberChip = styled.div`

@@ -10,12 +10,14 @@ import { FaQuestion } from 'react-icons/fa'
 import { useIntersectionObserver } from 'react-intersection-observer-hook'
 import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from '../Store'
+import { darkTheme, lightTheme } from 'src/Theme/theme'
 
 interface PoketCardProps {
     name: string
 }
 
 export default function PoketCard(props: PoketCardProps) {
+    const theme = useSelector((state: RootState) => state.themeType.theme)
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const imageType = useSelector((state: RootState) => state.imageType.type)
@@ -52,7 +54,7 @@ export default function PoketCard(props: PoketCardProps) {
     }
 
     return (
-        <Item onClick={handleCLick} color={poketmon.color} ref={ref}>
+        <Item theme={theme} onClick={handleCLick} color={poketmon.color} ref={ref}>
             <Header>
                 <PoketNameChip name={poketmon.koreanName} color={poketmon.color} id={poketmon.id} />
             </Header>
@@ -72,10 +74,10 @@ const Item = styled.li`
 
     padding: 0.5rem;
 
-    border: 1px solid #c0c0c0;
+    ${(props) => (props.theme === 'dark' ? darkTheme.border : lightTheme.border)}
     width: 250px;
     height: 300px;
-    box-shadow: 1px 1px 3px 1px #c0c0c0;
+    ${(props) => (props.theme === 'dark' ? darkTheme.boxShadow : lightTheme.boxShadow)}
 
     cursor: pointer;
     transition: transform 0.3s ease-in-out;

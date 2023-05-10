@@ -21,6 +21,8 @@ const Chip = styled.div`
 
     margin-left: auto;
     margin-right: 0.2rem;
+
+    background: #fff;
 `
 
 const Text = styled.label`
