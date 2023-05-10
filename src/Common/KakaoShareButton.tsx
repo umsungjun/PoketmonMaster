@@ -16,7 +16,7 @@ export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps
             objectType: 'feed',
             content: {
                 title: '포켓몬 마스터',
-                description: 'test',
+                description: '추억의 포켓몬들을 구경하세요.',
                 imageUrl:
                     'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
                 link: {
