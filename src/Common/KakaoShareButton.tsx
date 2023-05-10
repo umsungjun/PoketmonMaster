@@ -9,7 +9,8 @@ interface KakaoShareButtonProps {
 const Kakao = (window as any).Kakao
 
 export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps) {
-    const currentURL = `https://www.naver.com`
+    const currentURL = `https://poketmon-master.vercel.app/poketmon/${poketmonName}`
+    console.log(currentURL)
 
     const shareKakao = () => {
         Kakao.Share.sendDefault({
