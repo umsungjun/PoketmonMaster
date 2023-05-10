@@ -9,7 +9,7 @@ interface KakaoShareButtonProps {
 const Kakao = (window as any).Kakao
 
 export default function KakaoShareButton({ poketmonName }: KakaoShareButtonProps) {
-    const currentURL = `https://poketmon-master.vercel.app/poketmon/${poketmonName}`
+    const currentURL = `https://poketmon-master.vercel.app/poketmon/venusaur`
     console.log(currentURL)
 
     const shareKakao = () => {
