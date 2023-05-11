@@ -11,8 +11,6 @@ export interface PoketmonListResponseType {
     }[]
 }
 
-
-
 export const fetchPoketmonsAPI = async (nextUrl?: string) => {
     const requestUrl = nextUrl ? nextUrl : 'https://pokeapi.co/api/v2/pokemon'
 
@@ -86,10 +84,10 @@ export const fetchPoketmonDetailApi = async (name: string): Promise<PoketmonDeta
     const poketmonSpeciesURL = ` https://pokeapi.co/api/v2/pokemon-species/${name}`
 
     const response = await remote.get<PoketmonDetailResponseType>(poketmonDetailURL)
-    const speciesReponse = await remote.get<PoketmonSpeciesResponseType>(poketmonSpeciesURL)
+    const speciesResponse = await remote.get<PoketmonSpeciesResponseType>(poketmonSpeciesURL)
 
     const detail = response.data
-    const species = speciesReponse.data
+    const species = speciesResponse.data
     return {
         id: detail.id,
         name: detail.name,
