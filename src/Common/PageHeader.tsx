@@ -12,9 +12,10 @@ import { darkTheme, lightTheme } from 'src/Theme/theme'
 
 export default function PageHeader() {
     const imageType = useSelector((state: RootState) => state.imageType.type)
+    const theme = useSelector((state: RootState) => state.themeType.theme)
+
     const dispatch = useAppDispatch()
     const themeDispatch = useDispatch()
-    const theme = useSelector((state: RootState) => state.themeType.theme)
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(

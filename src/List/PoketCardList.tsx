@@ -18,7 +18,7 @@ export default function PoketCardList() {
             dispatch(fetchPoketmons(poketmons.next))
         },
         disabled: false,
-        rootMargin: '0px 0px 400px 0px',
+        rootMargin: '0px 0px 0px 0px',
     })
 
     useEffect(() => {

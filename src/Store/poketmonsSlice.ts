@@ -1,7 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { PoketmonListResponseType, fetchPoketmonsAPI } from '../Service/PoketmonService'
 
-// First, create the thunk
 export const fetchPoketmons = createAsyncThunk(
     'poketmon/fetchPoketmons',
     async (nextUrl?: string) => {
@@ -22,15 +21,11 @@ const initialState = {
     },
 } as PoketmonsState
 
-// Then, handle actions in your reducers:
 const poketmonsSlice = createSlice({
     name: 'pokemons',
     initialState,
-    reducers: {
-        // standard reducer logic, with auto-generated action types per reducer
-    },
+    reducers: {},
     extraReducers: (builder) => {
-        // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(
             fetchPoketmons.fulfilled,
             (state, action: PayloadAction<PoketmonListResponseType>) => {
