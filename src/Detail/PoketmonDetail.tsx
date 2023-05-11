@@ -75,7 +75,6 @@ export default function PoketmonDetail() {
                         </TableRow>
                     </tbody>
                 </Table>
-
                 <StatTitle>능력치</StatTitle>
                 <Table>
                     <tbody>

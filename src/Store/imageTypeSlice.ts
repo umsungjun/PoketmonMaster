@@ -9,7 +9,7 @@ export interface ImageTypeSate {
 }
 
 const initialState: ImageTypeSate = {
-    type: POKETMON_IMAGE_TYPE.FRONT_DEFAULT,
+    type: POKETMON_IMAGE_TYPE.OFFICIAL_ARTWORK,
 }
 
 export const imageTypeSlice = createSlice({

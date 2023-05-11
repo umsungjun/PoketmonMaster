@@ -41,8 +41,10 @@ export default function KakaoShareButton() {
     return (
         <ShareBox>
             <ShareButton onClick={() => shareKakao()}>
-                공유하기
-                <FiShare />
+                <KakaoLogoImg
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/KakaoTalk_logo.svg/600px-KakaoTalk_logo.svg.png"
+                    alt=""
+                />
             </ShareButton>
         </ShareBox>
     )
@@ -58,7 +60,6 @@ const ShareButton = styled.button`
     cursor: pointer;
     border: none;
     background: none;
-    font-size: 1.2rem;
     display: flex;
     align-items: center;
     transition: all ease-in-out 0.2s;
@@ -69,4 +70,8 @@ const ShareButton = styled.button`
     svg {
         margin-left: 0.3rem;
     }
+`
+
+const KakaoLogoImg = styled.img`
+    width: 2rem;
 `
