@@ -1,11 +1,14 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import { FiShare } from 'react-icons/fi'
+import { useParams } from 'react-router'
 
 const Kakao = (window as any).Kakao
 
 export default function KakaoShareButton() {
-    const url = `https://poketmon-master.vercel.app/poketmon/venusaur`
+    const { name } = useParams()
+    console.log(name)
+    const url = `https://poketmon-master.vercel.app/poketmon/${name}`
 
     const shareKakao = () => {
         Kakao.Share.sendDefault({
