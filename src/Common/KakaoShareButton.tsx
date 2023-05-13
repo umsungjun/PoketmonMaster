@@ -7,7 +7,7 @@ const Kakao = (window as any).Kakao
 
 export default function KakaoShareButton() {
     const { name } = useParams()
-    console.log(name)
+
     const url = `https://poketmon-master.vercel.app/poketmon/${name}`
 
     const shareKakao = () => {

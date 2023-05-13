@@ -9,7 +9,12 @@ import useInfiniteScroll from 'react-infinite-scroll-hook'
 export default function PoketCardList() {
     const dispatch = useAppDispatch()
     const theme = useSelector((state: RootState) => state.themeType.theme)
+
     const { poketmons } = useSelector((state: RootState) => state.poketmons)
+
+    useEffect(() => {
+        dispatch(fetchPoketmons())
+    }, [dispatch])
 
     const [infiniteRef] = useInfiniteScroll({
         loading: false,
@@ -20,10 +25,6 @@ export default function PoketCardList() {
         disabled: false,
         rootMargin: '0px 0px 0px 0px',
     })
-
-    useEffect(() => {
-        dispatch(fetchPoketmons())
-    }, [dispatch])
 
     return (
         <>
