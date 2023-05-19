@@ -24,7 +24,7 @@ export default function PageHeader() {
             })
         )
     }
-    // console.log(typeof theme)
+
     return (
         <Header theme={theme}>
             <Title>
