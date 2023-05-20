@@ -1,6 +1,4 @@
 import styled from '@emotion/styled'
-import React from 'react'
-import { FiShare } from 'react-icons/fi'
 import { useParams } from 'react-router'
 
 const Kakao = (window as any).Kakao
